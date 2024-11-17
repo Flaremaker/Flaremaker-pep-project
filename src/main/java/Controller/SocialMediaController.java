@@ -59,8 +59,6 @@ public class SocialMediaController {
     }
     //Get handler for account id to show all messages
     private void getAllMessagesHandlerByAccountId(Context ctx) throws JsonProcessingException{
-        ObjectMapper mapper = new ObjectMapper();
-        //Message message = mapper.readValue(ctx.body(), Message.class);
         int posted_by= Integer.parseInt(ctx.pathParam("account_id"));
         ctx.json(messageService.getAccountMessage(posted_by));
         ctx.status(200);
@@ -96,7 +94,6 @@ public class SocialMediaController {
     //Deletion handler for messags
     private void deleteMessageHandler(Context ctx) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-       // Message message = mapper.readValue(ctx.body(), Message.class);
         int message_id = Integer.parseInt(ctx.pathParam("message_id"));
         Message addedMessage = messageService.deleteMessage(message_id);
         System.out.println(addedMessage);

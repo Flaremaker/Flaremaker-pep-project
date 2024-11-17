@@ -44,12 +44,13 @@ public class MessageService {
         if (message.message_text.isBlank() || message.message_text.equals(null)) {
             return null;
         }
-        if (message.message_text.length() > 255 || accountDAO.getAccountById(message.getPosted_by())) {
+        if (message.message_text.length() > 255) {
+            return null;
+        } else if(accountDAO.getAccountById(message.getPosted_by())) {
             return messageDAO.insertMessage(message);
-        } else {
+        }else{
             return null;
         }
-
     }
 
     // Patch of the message service
